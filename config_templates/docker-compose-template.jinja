@@ -48,7 +48,7 @@ services:
     - ALLOWED_HOSTS={{WEB_MAILMAN_ALLOWED_HOSTS}}
     - SECRET_KEY={{DJANGO_SECRET_KEY}}
     - SERVE_FROM_DOMAIN={{WEB_MAILMAN_SERVE_FROM_DOM}}
-    - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
+    - UWSGI_STATIC_MAP=/static=/opt/projects/{{PROJECT_NAME}}/mailman-web-data/static
     ports:
     - "8000:8000" # HTTP
     - "8080:8080" # uwsgi
@@ -112,7 +112,7 @@ services:
     restart: always
     image: postgres:11-alpine
     volumes:
-    - /var/log/postfix/{{PROJECT_NAME}}/database:/var/lib/postgresql/data
+    - /opt/projects/{{PROJECT_NAME}}/database:/var/lib/postgresql/data
     networks:
       {{PROJECT_NAME}}:
 
