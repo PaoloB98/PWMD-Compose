@@ -49,6 +49,8 @@ services:
     - SECRET_KEY={{DJANGO_SECRET_KEY}}
     - SERVE_FROM_DOMAIN={{WEB_MAILMAN_SERVE_FROM_DOM}}
     - UWSGI_STATIC_MAP=/static=/opt/projects/{{PROJECT_NAME}}/mailman-web-data/static
+    - MAILMAN_REST_USER={{MAILMAN_REST_ADMIN}}
+    - MAILMAN_REST_PASSWORD={{MAILMAN_REST_PASS}}
     ports:
     - "8000:8000" # HTTP
     - "8080:8080" # uwsgi

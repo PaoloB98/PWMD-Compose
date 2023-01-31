@@ -1,7 +1,7 @@
-mkdir -p /opt/projects/{{PROJECT_NAME}}/PWMD-Compose/certs/
 mkdir -p /opt/projects/{{PROJECT_NAME}}/database
 mkdir -p /opt/projects/{{PROJECT_NAME}}/core
 mkdir -p /opt/projects/{{PROJECT_NAME}}/web
+mkdir -p /var/log/postfix/{{PROJECT_NAME}}
 
 sudo cp -R /etc/letsencrypt/archive/6green.eu/* /opt/projects/{{PROJECT_NAME}}/PWMD-Compose/nginx
 docker compose build --no-cache
