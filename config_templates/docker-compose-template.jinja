@@ -14,7 +14,7 @@ services:
     environment:
     - DATABASE_TYPE=postgres
     - DATABASE_CLASS=mailman.database.postgresql.PostgreSQLDatabase
-    - DATABASE_URL=postgresql://mailman:{{DB_PASS}}@postgredb/mailmandb
+    - DATABASE_URL=postgresql://mailman:{{POSTGRESS_DB_PASS}}@postgredb/mailmandb
     - HYPERKITTY_API_KEY={{HYPERKITTY_KEY}}
     - TZ=Europe/Rome
     - MAILMAN_REST_USER={{MAILMAN_REST_ADMIN}}
@@ -42,7 +42,7 @@ services:
     - /opt/projects/{{PROJECT_NAME}}/web:/opt/mailman-web-data
     environment:
     - DATABASE_TYPE=postgres
-    - DATABASE_URL=postgresql://mailman:{{DB_PASS}}@postgredb/mailmandb
+    - DATABASE_URL=postgresql://mailman:{{POSTGRESS_DB_PASS}}@postgredb/mailmandb
     - HYPERKITTY_API_KEY={{HYPERKITTY_KEY}}
     - TZ=Europe/Rome
     - ALLOWED_HOSTS={{WEB_MAILMAN_ALLOWED_HOSTS}}
