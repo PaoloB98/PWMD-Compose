@@ -10,19 +10,13 @@ http {
     server {
         listen 80;
         server_name {{PUBLIC_SITE_DOMAIN}};
-
-        location / {
-            return 301 https://$host$request_uri;
-        }
+        return 301 https://$host$request_uri;
     }
 
     server {
         listen 80;
         server_name {{DOMAIN}};
-
-        location / {
-            return 301 https://www.$host$request_uri;
-        }
+        return 301 https://www.$host$request_uri;
     }
 
     server {

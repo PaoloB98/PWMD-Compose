@@ -24,7 +24,7 @@ def template_deploy(template_file_name: str, result_file_name: str, ):
     config_file.write(render)
     config_file.close()
 
-    print("DONE")
+    print("GENERATED: {}".format(result_file_name))
 
 
 if __name__ == '__main__':
