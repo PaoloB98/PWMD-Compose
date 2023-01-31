@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  mailman-core:
+    image: maxking/mailman-core:0.4
+    container_name: {{PROJECT_NAME}}-mailman-core
+    hostname: mailman-core
+    volumes:
+    - /opt/projects/{{PROJECT_NAME}}/core:/opt/mailman/
+    links:
+    - postgredb:postgredb
+    depends_on:
+    - postgredb
+    environment:
+    - DATABASE_TYPE=postgres
+    - DATABASE_CLASS=mailman.database.postgresql.PostgreSQLDatabase
+    - DATABASE_URL=postgresql://mailman:{{DB_PASS}}@postgredb/mailmandb
+    - HYPERKITTY_API_KEY={{HYPERKITTY_KEY}}
+    - TZ=Europe/Rome
+    - MAILMAN_REST_USER={{MAILMAN_REST_ADMIN}}
+    - MAILMAN_REST_PASSWORD={{MAILMAN_REST_PASS}}
+    - MTA=postfix
+    restart: always
+    ports:
+    - "8001:8001" # API
+    - "8024:8024" # LMTP - incoming emails
+    networks:
+      {{PROJECT_NAME}}:
+
+  mailman-web:
+    image: maxking/mailman-web:0.4
+    container_name: {{PROJECT_NAME}}-mailman-web
+    hostname: mailman-web
+    stop_grace_period: 30s
+    restart: always
+    depends_on:
+    - postgredb
+    links:
+    - mailman-core:mailman-core
+    - postgredb:postgredb
+    volumes:
+    - /opt/projects/{{PROJECT_NAME}}/web:/opt/mailman-web-data
+    environment:
+    - DATABASE_TYPE=postgres
+    - DATABASE_URL=postgresql://mailman:{{DB_PASS}}@postgredb/mailmandb
+    - HYPERKITTY_API_KEY={{HYPERKITTY_KEY}}
+    - TZ=Europe/Rome
+    - ALLOWED_HOSTS={{WEB_MAILMAN_ALLOWED_HOSTS}}
+    - SECRET_KEY={{DJANGO_SECRET_KEY}}
+    - SERVE_FROM_DOMAIN={{WEB_MAILMAN_SERVE_FROM_DOM}}
+    - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
+    ports:
+    - "8000:8000" # HTTP
+    - "8080:8080" # uwsgi
+    networks:
+      {{PROJECT_NAME}}:
+
+  postfix:
+    image: postfix-gateway
+    container_name: {{PROJECT_NAME}}-postfix
+    build: ./postfix
+    restart: always
+    hostname: postfix
+    volumes:
+      - /var/log/postfix/{{PROJECT_NAME}}:/var/log #To allow permanent logging
+    ports:
+      - "25:25"
+      - "587:587"
+      - "465:465"
+    networks:
+      {{PROJECT_NAME}}:
+
+  web-site:
+    image: httpd
+    container_name: {{PROJECT_NAME}}-web-site
+    restart: always
+    hostname: web-site
+    networks:
+      {{PROJECT_NAME}}:
+
+  reverse-proxy:
+    container_name: {{PROJECT_NAME}}-nginx-rproxy
+    hostname: reverse-proxy
+    build:
+      context: ./nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: always
+    networks:
+      {{PROJECT_NAME}}:
+
+  mongo:
+    image: mongo
+    hostname: mongo-db
+    container_name: {{PROJECT_NAME}}-mongo-db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: {{MONGO_ROOT_USR}}
+      MONGO_INITDB_ROOT_PASSWORD: {{MONGO_ROOT_PSWD}}
+    networks:
+      {{PROJECT_NAME}}:
+
+  postgredb:
+    hostname: postgredb
+    container_name: {{PROJECT_NAME}}-postgres-db
+    environment:
+    - PGUSER={{PG_USER}}
+    - POSTGRES_DB={{POSTGRESS_DB_NAME}}
+    - POSTGRES_USER={{POSTGRESS_USER}}
+    - POSTGRES_PASSWORD={{POSTGRESS_DB_PASS}}
+    restart: always
+    image: postgres:11-alpine
+    volumes:
+    - /var/log/postfix/{{PROJECT_NAME}}/database:/var/lib/postgresql/data
+    networks:
+      {{PROJECT_NAME}}:
+
+networks:
+  {{PROJECT_NAME}}:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: {{DOCKER_SUBNET}}
