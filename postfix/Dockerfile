@@ -26,10 +26,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
 COPY main.cf /etc/postfix/main.cf
 COPY virtusertable /etc/postfix/virtusertable
 RUN postmap /etc/postfix/virtusertable
-RUN postconf maillog_file=/var/log/postfix.log
 RUN cp /etc/host.conf /var/spool/postfix/etc/
 RUN cp /etc/resolv.conf /var/spool/postfix/etc/
 RUN cp /etc/services /var/spool/postfix/etc/
+RUN postconf maillog_file=/var/log/postfix.log
 
 
 USER root
