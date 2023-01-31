@@ -1,0 +1,22 @@
+{
+  "PROJECT_NAME": "example",
+  "HYPERKITTY_KEY": "hyperkey",
+  "MAILMAN_REST_ADMIN": "restadmin",
+  "MAILMAN_REST_PASS": "restpass",
+  "DJANGO_SECRET_KEY": "django_secret",
+  "WEB_MAILMAN_ALLOWED_HOSTS": "X.X.X.X",
+  "WEB_MAILMAN_SERVE_FROM_DOM": "example.eu",
+  "MONGO_ROOT_USR" : "root",
+  "MONGO_ROOT_PSWD" : "passw",
+  "PG_USER" : "mailman",
+  "POSTGRESS_DB_NAME": "mailmandb",
+  "POSTGRESS_DB_PASS": "dbpass",
+  "POSTGRESS_USER" : "mailman",
+  "DOCKER_SUBNET" : "10.1.0.0/24",
+  "PUBLIC_SITE_DOMAIN" : "www.example.eu",
+  "DOMAIN" : "example.eu",
+  "MAIL_HOSTNAME" : "mail.example.eu",
+  "NETWORKS": "130.251.17.0/24 172.30.252.0/24 192.168.17.0/24 127.0.0.0/8",
+  "VIRTUAL_ALIAS_DOMAIN": "example-2.eu",
+  "INFO_AT_MAILS": "youremail@toredirect.mail"
+}
