@@ -1,7 +1,7 @@
 # PWMD-Compose
 Postfix+Web+Mailman on Docker Compose
 
-## Setup
+## Setup (1/3) - Download repo in the right folder
 Be root
 ```
 sudo su
@@ -24,9 +24,13 @@ git clone https://github.com/PaoloB98/PWMD-Compose
 ```
 Enter the folder 
 ```
-cd PWMD-Compose/
+cd PWMD-Compose/s
 ```
-Edit the file /opt/projects/PROJECT/PWMD-Compose/config_templates/dictionary-EXAMPLE.json replacing values with YOUR values. NOTE: PROJECT_NAME must be the same name used when you have created the folder  /opt/projects/PROJECT
+
+## Configuration
+Edit the file */opt/projects/PROJECT/PWMD-Compose/config_templates/dictionary-EXAMPLE.json* replacing values with YOUR values. 
+
+NOTE: PROJECT_NAME must be the same name used when you have created the folder  /opt/projects/PROJECT
 
 Then rename this template in
 ```
@@ -40,10 +44,16 @@ Give execution permission to the start file
 ```
 chmod +x start.sh
 ```
-And finally you can start the docker compose throgh
+And finally you can start the docker compose through
 ```
 ./start.sh
 ```
+
+## Links
+Mailman web: http://domain.eu:8000/
+Public portal: https://domain.eu/ http://domain.eu/ http://www.domain.eu/ https://www.domain.eu/
+Private portal: https://private.domain.eu/ http://private.domain.eu/
+Mail are relayed to users into virtusertable, which template is in config_templates/virtusertable-template.jinja  (Example info@domain.eu -> yourPrivate@mail.eu)
 
 ## Log
 For each postfix instance you can find the log in /var/log/postfix/{{PROJECT_NAME}}/
