@@ -72,11 +72,11 @@ services:
     networks:
       {{PROJECT_NAME}}:
 
-  public-web-site:
+  web-site:
     image: httpd
-    container_name: {{PROJECT_NAME}}-public-web-site
+    container_name: {{PROJECT_NAME}}-web-site
     restart: always
-    hostname: public-web-site
+    hostname: web-site
     networks:
       {{PROJECT_NAME}}:
 
@@ -90,10 +90,7 @@ services:
       - "{{PUBLIC_IP}}:80:80"
     restart: always
     volumes:
-      - type: volume
-        source: /etc/letsencrypt/
-        target: /etc/letsencrypt
-        read_only: true
+    - /etc/letsencrypt/:/etc/letsencrypt:ro
     networks:
       {{PROJECT_NAME}}:
 
