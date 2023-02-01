@@ -94,7 +94,7 @@ services:
     networks:
       {{PROJECT_NAME}}:
 
-  mongo:
+  mongo-db:
     image: mongo
     hostname: mongo-db
     container_name: {{PROJECT_NAME}}-mongo-db
@@ -102,6 +102,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: {{MONGO_ROOT_USR}}
       MONGO_INITDB_ROOT_PASSWORD: {{MONGO_ROOT_PSWD}}
+    volumes:
+      - type: volume
+        source: /opt/projects/{{PROJECT_NAME}}/mongodb
+        target: /data/db
     networks:
       {{PROJECT_NAME}}:
 
@@ -116,7 +120,7 @@ services:
     restart: always
     image: postgres:11-alpine
     volumes:
-    - /opt/projects/{{PROJECT_NAME}}/database:/var/lib/postgresql/data
+    - /opt/projects/{{PROJECT_NAME}}/pg-database:/var/lib/postgresql/data
     networks:
       {{PROJECT_NAME}}:
 
