@@ -74,9 +74,9 @@ services:
 
   public-web-site:
     image: httpd
-    container_name: {{PROJECT_NAME}}public-web-site
+    container_name: {{PROJECT_NAME}}-public-web-site
     restart: always
-    hostname: public-web-site
+    hostname: {{PROJECT_NAME}}-public-web-site
     networks:
       {{PROJECT_NAME}}:
 
