@@ -50,6 +50,7 @@ services:
     - SERVE_FROM_DOMAIN={{WEB_MAILMAN_SERVE_FROM_DOM}}
     - MAILMAN_REST_USER={{MAILMAN_REST_ADMIN}}
     - MAILMAN_REST_PASSWORD={{MAILMAN_REST_PASS}}
+    - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
     ports:
     - "8000:8000" # HTTP
     - "8080:8080" # uwsgi
