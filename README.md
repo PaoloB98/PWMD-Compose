@@ -51,9 +51,12 @@ And finally you can start the docker compose through
 
 ## Links
 Mailman web: http://domain.eu:8000/
+
 Public portal: https://domain.eu/ http://domain.eu/ http://www.domain.eu/ https://www.domain.eu/
+
 Private portal: https://private.domain.eu/ http://private.domain.eu/
+
 Mail are relayed to users into virtusertable, which template is in config_templates/virtusertable-template.jinja  (Example info@domain.eu -> yourPrivate@mail.eu)
 
-## Log
-For each postfix instance you can find the log in /var/log/postfix/{{PROJECT_NAME}}/
+## Logs
+-For each **Postfix** instance you can find the log inside */opt/projects/{{PROJECT_NAME}}/logs/postfix/*
