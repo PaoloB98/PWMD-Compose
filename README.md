@@ -58,5 +58,25 @@ Private portal: https://private.domain.eu/ http://private.domain.eu/
 
 Mail are relayed to users into virtusertable, which template is in config_templates/virtusertable-template.jinja  (Example info@domain.eu -> yourPrivate@mail.eu)
 
+## Mailman-Web usage
+Access from your private network to 
+```
+http://domain.eu:8000/
+```
+Log in using the credentials you have chosen inside the dictionary. The email confirmation will be sent to *info@yourdomain.eu* (Check the linked mail to info@...).
+
+You will receive a link to activate the administration account, **change the link from https to http**
+```
+ https://domain.eu:8000/accounts/confirm-email/MQ:1pBpc:Rzf25KyUDQSZa846w6A1G3cQ2MptwowbIzeYUbY8/
+```
+to
+```
+ http://domain.eu:8000/accounts/confirm-email/MQ:1pBpc:Rzf25KyUDQSZa846w6A1G3cQ2MptwowbIzeYUbY8/
+```
+and confirm the administrator account.
+
 ## Logs
--For each **Postfix** instance you can find the log inside */opt/projects/{{PROJECT_NAME}}/logs/postfix/*
+### Postfix
+-*/opt/projects/{{PROJECT_NAME}}/logs/postfix/*
+### Mailman-web
+-*/opt/projects/{{PROJECT_NAME}}/web/logs*

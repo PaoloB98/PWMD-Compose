@@ -52,6 +52,7 @@ services:
     - MAILMAN_REST_PASSWORD={{MAILMAN_REST_PASS}}
     - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
     - DJANGO_LOG_URL=/opt/mailman-web-data/logs/mailmanweb.log
+    - SMTP_HOST={{PUBLIC_IP}}
     ports:
     - "{{PUBLIC_IP}}:8000:8000" # HTTP
     - "{{PUBLIC_IP}}:8080:8080" # uwsgi
