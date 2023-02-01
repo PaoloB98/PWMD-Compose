@@ -72,11 +72,11 @@ services:
     networks:
       {{PROJECT_NAME}}:
 
-  web-site:
+  public-web-site:
     image: httpd
-    container_name: {{PROJECT_NAME}}-web-site
+    container_name: {{PROJECT_NAME}}public-web-site
     restart: always
-    hostname: web-site
+    hostname: public-web-site
     networks:
       {{PROJECT_NAME}}:
 
