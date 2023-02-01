@@ -103,9 +103,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: {{MONGO_ROOT_USR}}
       MONGO_INITDB_ROOT_PASSWORD: {{MONGO_ROOT_PSWD}}
     volumes:
-      - type: volume
-        source: /opt/projects/{{PROJECT_NAME}}/mongodb
-        target: /data/db
+      - /opt/projects/{{PROJECT_NAME}}/mongodb:/data/db
     networks:
       {{PROJECT_NAME}}:
 
