@@ -64,7 +64,7 @@ services:
     restart: always
     hostname: postfix
     volumes:
-      - /var/log/postfix/{{PROJECT_NAME}}:/var/log #To allow permanent logging
+      - /opt/projects/{{PROJECT_NAME}}/logs/postfix:/var/log #To allow permanent logging
     ports:
       - "{{PUBLIC_IP}}:25:25"
       - "{{PUBLIC_IP}}:587:587"
@@ -72,11 +72,11 @@ services:
     networks:
       {{PROJECT_NAME}}:
 
-  web-site:
+  public-web-site:
     image: httpd
-    container_name: {{PROJECT_NAME}}-web-site
+    container_name: {{PROJECT_NAME}}-public-web-site
     restart: always
-    hostname: web-site
+    hostname: public-web-site
     networks:
       {{PROJECT_NAME}}:
 
@@ -91,6 +91,7 @@ services:
     restart: always
     volumes:
     - /etc/letsencrypt/:/etc/letsencrypt
+      read_only: true
     networks:
       {{PROJECT_NAME}}:
 
