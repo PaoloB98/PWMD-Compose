@@ -10,5 +10,5 @@ docker compose build --no-cache
 docker compose up -d
 
 echo 'Waiting for mailman-web to be ready'
-sleep 30
-docker exec -i {{PROJECT_NAME}}-mailman-web /bin/bash -c "DJANGO_SUPERUSER_PASSWORD=my_password ./manage.py createsuperuser --no-input --username=mailadmin --email=admin@example.234es.it"
+sleep 40
+docker exec -i {{PROJECT_NAME}}-mailman-web /bin/bash -c "DJANGO_SUPERUSER_PASSWORD={{WEB_MAILMAN_ADMIN_PASSWORD}} ./manage.py createsuperuser --no-input --username={{WEB_MAILMAN_ADMIN_USERNAME}} --email={{WEB_MAILMAN_ADMIN_EMAIL}}"
