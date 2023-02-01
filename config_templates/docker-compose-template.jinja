@@ -22,8 +22,8 @@ services:
     - MTA=postfix
     restart: always
     ports:
-    - "8001:8001" # API
-    - "8024:8024" # LMTP - incoming emails
+    - "{{PUBLIC_IP}}:8001:8001" # API
+    - "{{PUBLIC_IP}}:8024:8024" # LMTP - incoming emails
     networks:
       {{PROJECT_NAME}}:
 
@@ -52,8 +52,8 @@ services:
     - MAILMAN_REST_PASSWORD={{MAILMAN_REST_PASS}}
     - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
     ports:
-    - "8000:8000" # HTTP
-    - "8080:8080" # uwsgi
+    - "{{PUBLIC_IP}}:8000:8000" # HTTP
+    - "{{PUBLIC_IP}}:8080:8080" # uwsgi
     networks:
       {{PROJECT_NAME}}:
 
@@ -66,9 +66,9 @@ services:
     volumes:
       - /var/log/postfix/{{PROJECT_NAME}}:/var/log #To allow permanent logging
     ports:
-      - "25:25"
-      - "587:587"
-      - "465:465"
+      - "{{PUBLIC_IP}}:25:25"
+      - "{{PUBLIC_IP}}:587:587"
+      - "{{PUBLIC_IP}}:465:465"
     networks:
       {{PROJECT_NAME}}:
 
@@ -86,8 +86,8 @@ services:
     build:
       context: ./nginx
     ports:
-      - "443:443"
-      - "80:80"
+      - "{{PUBLIC_IP}}:443:443"
+      - "{{PUBLIC_IP}}:80:80"
     restart: always
     volumes:
     - /etc/letsencrypt/:/etc/letsencrypt

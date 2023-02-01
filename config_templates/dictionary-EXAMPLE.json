@@ -19,5 +19,6 @@
   "MAIL_HOSTNAME" : "mail.example.eu",
   "NETWORKS": "130.251.17.0/24 172.30.252.0/24 192.168.17.0/24 127.0.0.0/8",
   "VIRTUAL_ALIAS_DOMAIN": "example-2.eu",
-  "INFO_AT_MAILS": "youremail@toredirect.mail"
+  "INFO_AT_MAILS": "youremail@toredirect.mail",
+  "PUBLIC_IP": "X.X.X.X"
 }
