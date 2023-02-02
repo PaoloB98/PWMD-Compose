@@ -1,7 +1,20 @@
 # PWMD-Compose
 Postfix+Web+Mailman on Docker Compose
 
-## Setup (1/3) - Download repo in the right folder
+## Pre installation steps (1/3)
+
+### Docker installation
+
+???
+
+### Certificates
+You will need certificate for your domain. Install **Certbot** and generate your certificate for each domain and subdomain that is needed
+```
+sudo certbot certonly --standalone --cert-name 6green.eu -d example.eu -d www.example.eu -d private.example.eu -d mail.example.eu
+```
+This docker compose will need at leas www, mail and private subdomains. Your certificates are now in */etc/letsencrypt/live/{{PUBLIC_SITE_DOMAIN}}/* and will be authoritative for all domain you inserted the previous command.
+
+## Setup (2/3) - Download repo in the right folder
 Be root
 ```
 sudo su
@@ -27,7 +40,7 @@ Enter the folder
 cd PWMD-Compose/s
 ```
 
-## Configuration
+## Configuration (3/3)
 Edit the file */opt/projects/PROJECT/PWMD-Compose/config_templates/dictionary-EXAMPLE.json* replacing values with YOUR values. 
 
 NOTE: PROJECT_NAME must be the same name used when you have created the folder  /opt/projects/PROJECT
