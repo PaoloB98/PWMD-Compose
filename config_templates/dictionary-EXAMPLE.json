@@ -9,8 +9,6 @@
   "WEB_MAILMAN_ADMIN_EMAIL": "admin@canbeexternal.eu",
   "WEB_MAILMAN_ADMIN_USERNAME": "mailadmin",
   "WEB_MAILMAN_ADMIN_PASSWORD": "mypassword",
-  "MONGO_ROOT_USR" : "root",
-  "MONGO_ROOT_PSWD" : "passw",
   "PG_USER" : "mailman",
   "POSTGRESS_DB_NAME": "mailmandb",
   "POSTGRESS_DB_PASS": "dbpass",
@@ -24,5 +22,6 @@
   "NETWORKS": "172.30.252.0/24 192.168.17.0/24 127.0.0.0/8  10.1.0.1/24",
   "VIRTUAL_ALIAS_DOMAIN": "example-2.eu",
   "INFO_AT_MAILS": "youremail@toredirect.mail",
+  "ADMIN_AT_MAILS": "example@gmail.com hola@ex.it",
   "PUBLIC_IP": "X.X.X.X"
 }

@@ -22,9 +22,6 @@ services:
     - MTA=postfix
     - SMTP_HOST={{PUBLIC_IP}}
     restart: always
-    ports:
-    - "{{PUBLIC_IP}}:8001:8001" # API
-    - "{{PUBLIC_IP}}:8024:8024" # LMTP - incoming emails
     networks:
       {{PROJECT_NAME}}:
 
@@ -78,6 +75,19 @@ services:
     container_name: {{PROJECT_NAME}}-public-web-site
     restart: always
     hostname: {{PROJECT_NAME}}-public-web-site
+    networks:
+      {{PROJECT_NAME}}:
+
+  private-website:
+    image: projectwebsite:1.0.0
+    container_name: {{PROJECT_NAME}}-private-website
+    restart: always
+    hostname: {{PROJECT_NAME}}-private-website
+    volumes:
+    - /opt/projects/{{PROJECT_NAME}}/fs/private-website/usersecrets:/root/.microsoft/usersecrets:ro
+    - /opt/projects/{{PROJECT_NAME}}/fs/private-website/images:/app/wwwroot/images:ro
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
     networks:
       {{PROJECT_NAME}}:
 
