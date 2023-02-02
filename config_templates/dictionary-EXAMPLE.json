@@ -5,7 +5,7 @@
   "MAILMAN_REST_PASS": "restpass",
   "DJANGO_SECRET_KEY": "django_secret",
   "WEB_MAILMAN_ALLOWED_HOSTS": "X.X.X.X",
-  "WEB_MAILMAN_SERVE_FROM_DOM": "example.eu",
+  "WEB_MAILMAN_SERVE_FROM_DOM": "mail.example.eu",
   "WEB_MAILMAN_ADMIN_EMAIL": "admin@canbeexternal.eu",
   "WEB_MAILMAN_ADMIN_USERNAME": "mailadmin",
   "WEB_MAILMAN_ADMIN_PASSWORD": "mypassword",
