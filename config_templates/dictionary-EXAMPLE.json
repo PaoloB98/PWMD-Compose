@@ -18,6 +18,7 @@
   "DOCKER_SUBNET" : "10.1.0.0/24",
   "PUBLIC_SITE_DOMAIN" : "www.example.eu",
   "PRIVATE_SITE_DOMAIN" : "private.example.eu",
+  "MAIL_SITE_DOMAIN" : "mail.6green.eu",
   "DOMAIN" : "example.eu",
   "MAIL_HOSTNAME" : "mail.example.eu",
   "NETWORKS": "130.251.17.0/24 172.30.252.0/24 192.168.17.0/24 127.0.0.0/8",
