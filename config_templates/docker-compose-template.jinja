@@ -20,6 +20,7 @@ services:
     - MAILMAN_REST_USER={{MAILMAN_REST_ADMIN}}
     - MAILMAN_REST_PASSWORD={{MAILMAN_REST_PASS}}
     - MTA=postfix
+    - SMTP_HOST={{PUBLIC_IP}}
     restart: always
     ports:
     - "{{PUBLIC_IP}}:8001:8001" # API
@@ -66,7 +67,8 @@ services:
     restart: always
     hostname: postfix
     volumes:
-      - /opt/projects/{{PROJECT_NAME}}/logs/postfix:/var/log #To allow permanent logging
+      - /opt/projects/{{PROJECT_NAME}}/logs/postfix:/var/log  #To allow permanent logging
+      - /opt/projects/{{PROJECT_NAME}}/core:/opt/mailman/
     ports:
       - "{{PUBLIC_IP}}:25:25"
       - "{{PUBLIC_IP}}:587:587"
