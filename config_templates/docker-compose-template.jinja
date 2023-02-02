@@ -54,9 +54,6 @@ services:
     - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
     - DJANGO_LOG_URL=/opt/mailman-web-data/logs/mailmanweb.log
     - SMTP_HOST={{PUBLIC_IP}}
-    ports:
-    - "{{PUBLIC_IP}}:8000:8000" # HTTP
-    - "{{PUBLIC_IP}}:8080:8080" # uwsgi
     networks:
       {{PROJECT_NAME}}:
 
@@ -95,19 +92,6 @@ services:
     restart: always
     volumes:
     - /etc/letsencrypt/:/etc/letsencrypt:ro
-    networks:
-      {{PROJECT_NAME}}:
-
-  mongo-db:
-    image: mongo
-    hostname: mongo-db
-    container_name: {{PROJECT_NAME}}-mongo-db
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: {{MONGO_ROOT_USR}}
-      MONGO_INITDB_ROOT_PASSWORD: {{MONGO_ROOT_PSWD}}
-    volumes:
-      - /opt/projects/{{PROJECT_NAME}}/mongodb:/data/db
     networks:
       {{PROJECT_NAME}}:
 
