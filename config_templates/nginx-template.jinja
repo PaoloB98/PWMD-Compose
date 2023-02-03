@@ -64,7 +64,7 @@ http {
         ssl_certificate_key /etc/letsencrypt/live/{{DOMAIN}}/privkey.pem;
 
         location / {
-            proxy_pass         http://{{PROJECT_NAME}}-public-web-site;
+            proxy_pass         http://{{PROJECT_NAME}}-private-website;
             proxy_redirect     off;
             proxy_http_version 1.1;
             proxy_cache_bypass $http_upgrade;
