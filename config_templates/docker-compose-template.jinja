@@ -4,7 +4,7 @@ services:
   {{PROJECT_NAME}}-mailman-core:
     image: maxking/mailman-core:0.4
     container_name: {{PROJECT_NAME}}-mailman-core
-    hostname: {{PROJECT_NAME}}-mailman-core
+    hostname: mailman-core
     volumes:
     - /opt/projects/{{PROJECT_NAME}}/volumes/mailman-core/:/opt/mailman/
     links:
@@ -28,13 +28,13 @@ services:
   {{PROJECT_NAME}}-mailman-web:
     image: maxking/mailman-web:0.4
     container_name: {{PROJECT_NAME}}-mailman-web
-    hostname: {{PROJECT_NAME}}-mailman-web
+    hostname: mailman-web
     stop_grace_period: 30s
     restart: always
     depends_on:
     - {{PROJECT_NAME}}-postgres-db
     links:
-    - {{PROJECT_NAME}}-mailman-core:{{PROJECT_NAME}}-mailman-core
+    - mailman-core:mailman-core
     - {{PROJECT_NAME}}-postgres-db:{{PROJECT_NAME}}-postgres-db
     volumes:
     - /opt/projects/{{PROJECT_NAME}}/volumes/mailman-web:/opt/mailman-web-data
