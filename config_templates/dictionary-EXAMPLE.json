@@ -23,5 +23,7 @@
   "VIRTUAL_ALIAS_DOMAIN": "example-2.eu",
   "INFO_AT_MAILS": "youremail@toredirect.mail",
   "ADMIN_AT_MAILS": "example@gmail.com hola@ex.it",
-  "PUBLIC_IP": "X.X.X.X"
+  "PUBLIC_IP": "X.X.X.X",
+  "ALLOWED_MAILMAN_IP_NET1": "x.x.x.0/24",
+  "ALLOWED_MAILMAN_IP_NET2": "x.x.x.0/24"
 }

@@ -103,6 +103,10 @@ http {
             proxy_buffer_size           128k;
             proxy_buffers               4 256k;
             proxy_busy_buffers_size     256k;
+            allow   {{ALLOWED_MAILMAN_IP_NET1}};
+            allow   {{ALLOWED_MAILMAN_IP_NET2}};
+            # drop rest of the world
+            deny    all;
         }
     }
 }

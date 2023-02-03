@@ -1,15 +1,15 @@
-mkdir -p /opt/projects/{{PROJECT_NAME}}/database
-mkdir -p /opt/projects/{{PROJECT_NAME}}/core
-mkdir -p /opt/projects/{{PROJECT_NAME}}/web
-mkdir -p /opt/projects/{{PROJECT_NAME}}/logs
-mkdir -p /opt/projects/{{PROJECT_NAME}}/pg-database
-mkdir -p /opt/projects/{{PROJECT_NAME}}/mongodb
-mkdir -p /opt/projects/{{PROJECT_NAME}}/public-site
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes/mailman-core
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes/mailman-web
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes/postfix/logs
+cp ./postfix/virtusertable /opt/projects/{{PROJECT_NAME}}/volumes/postfix/virtusertable
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes/postgredb
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes/public-web-site
+mkdir -p /opt/projects/{{PROJECT_NAME}}/volumes/private-web-site/
 
-# sudo cp -R /etc/letsencrypt/archive/6green.eu/* /opt/projects/{{PROJECT_NAME}}/PWMD-Compose/nginx
 docker compose build --no-cache
 docker compose up -d
 
 echo 'Waiting for mailman-web to be ready'
-sleep 40
+sleep 30
 docker exec -i {{PROJECT_NAME}}-mailman-web /bin/bash -c "DJANGO_SUPERUSER_PASSWORD={{WEB_MAILMAN_ADMIN_PASSWORD}} ./manage.py createsuperuser --no-input --username={{WEB_MAILMAN_ADMIN_USERNAME}} --email=info@{{DOMAIN}}"
