@@ -33,3 +33,4 @@ if __name__ == '__main__':
     template_deploy("postfix-config-template.jinja", "postfix/main.cf")
     template_deploy("virtusertable-template.jinja", "postfix/virtusertable")
     template_deploy("start-sh-template.jinja", "start.sh")
+    template_deploy("update_virt_user_table-TEMPLATE.jinja", "postfix/update_virt_user_table.sh")
