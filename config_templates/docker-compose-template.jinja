@@ -63,6 +63,7 @@ services:
     volumes:
       - /opt/projects/{{PROJECT_NAME}}/logs/postfix:/var/log  #To allow permanent logging
       - /opt/projects/{{PROJECT_NAME}}/core:/opt/mailman/
+      - ./postfix/virtusertable:/etc/postfix/virtusertable
     ports:
       - "{{PUBLIC_IP}}:25:25"
       - "{{PUBLIC_IP}}:587:587"
@@ -75,6 +76,8 @@ services:
     container_name: {{PROJECT_NAME}}-public-web-site
     restart: always
     hostname: {{PROJECT_NAME}}-public-web-site
+    volumes:
+    - /opt/projects/{{PROJECT_NAME}}/public-site:/usr/local/apache2/htdocs/
     networks:
       {{PROJECT_NAME}}:
 
