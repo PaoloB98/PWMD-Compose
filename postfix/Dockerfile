@@ -24,6 +24,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && apt-get --quiet --quiet clean \
     && rm --recursive --force /var/lib/apt/listsdock/* /tmp/* /var/tmp/*
 COPY main.cf /etc/postfix/main.cf
+COPY virtusertable /etc/postfix/virtusertable
 RUN postmap /etc/postfix/virtusertable
 RUN cp /etc/host.conf /var/spool/postfix/etc/
 RUN cp /etc/resolv.conf /var/spool/postfix/etc/
